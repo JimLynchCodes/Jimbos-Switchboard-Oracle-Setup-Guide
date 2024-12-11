@@ -24,8 +24,13 @@ Starting and running a fleet of oracle servers correctly should produce profit a
 
 -  Switchboard solana stats (https://flipsidecrypto.xyz/DoctorBlocks/switchboard-solana-stats-PBx1CB)
 
-- azure 
+- azure portal: https://portal.azure.com/
 
+- on-chain data Solana: https://www.theblock.co/data/on-chain-metrics/solana
+
+- comparison metrics: XRP Transactions: https://xrpscan.com/metrics
+
+- comparison metrics: Bitcoin Transactions: https://ycharts.com/indicators/bitcoin_transactions_per_day
 
 
 ## Cloud Server Provider Comparison
