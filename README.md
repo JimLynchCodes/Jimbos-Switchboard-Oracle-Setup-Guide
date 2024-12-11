@@ -32,6 +32,9 @@ Starting and running a fleet of oracle servers correctly should produce profit a
 
 - comparison metrics: Bitcoin Transactions: https://ycharts.com/indicators/bitcoin_transactions_per_day
 
+- comparison metrics: Polygon Transactions: https://polygonscan.com/chart/tx
+ 
+<br/> 
 
 ## Cloud Server Provider Comparison
 
