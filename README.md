@@ -6,6 +6,12 @@ _Discalimer: This guide could contain errors ror flaws. Use at your own risk!_
 
 <br/>
 
+## _Why?_
+
+Starting and running a fleet of oracle servers correctly should produce profit and contribute to the availability of high quality off-chain data.
+
+<br/>
+
 ## Links
 
 - Official switchboard docs for running an oracle: https://docs.switchboard.xyz/docs/switchboard/running-switchboard-oracles
