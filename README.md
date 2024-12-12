@@ -537,3 +537,18 @@ HELM: Installing Switchboard Oracle under namespace switchboard-oracle-devnet
 Error: Kubernetes cluster unreachable: Get "http://localhost:8080/version": dial tcp 127.0.0.1:8080: connect: connection refused
 
 
+
+
+./99-k8s-oracle-install.sh 
+====
+ 
+cp: cannot create regular file '/tmp/helm_values.yaml': Permission denied
+azureuser@second-try-oracle-devnet-sb-DCdsv3-k8s:~/infra-external/install/bare-metal/kubernetes$ sudo !!
+sudo ./99-k8s-oracle-install.sh 
+====
+ 
+HELM: Installing Switchboard Oracle under namespace switchboard-oracle-devnet
+Error: Kubernetes cluster unreachable: Get "http://localhost:8080/version": dial tcp 127.0.0.1:8080: connect: connection refused
+
+
+Arrrgggghghhhhh :(
