@@ -184,4 +184,66 @@ vim cfg/00-common-vars.cfg
 Then start running the scripts in `install/cloud/azure`.
 
 
+may need to manually install docker:
+```
+sudo apt update
+sudo apt install docker.io docker-compose
+```
+
+may need to install solana cli also (for solana-keygen errors) (script 40)
+```
+sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"
+```
+
+may need to create the /data folder and file for it to use (add add proper permissions)
+```
+sudo mkdir /data
+cd /data
+sudo touch devnet_payer.json
+sudo chmod 777 /data/devnet_payer.json
+```
+
+note the public key and pass phrase! request another airdrop at faucet.solana.com if the script one fails.
+
+B53jgPT8kaSh19kNaqBaqhiLTJhW8oZFEH1gfit97Z7W
+
+
+(51) keep runnign til it works?
+
+note the output, something like this:
+ -> Solana cluster: devnet
+ -> queueKey: EYiAmGSdsQTuCw413V5BzaruWuCCSDgTPtBGvLkXHbe7
+
+
+Running into error trying to start Kubernetes:
+
+azureuser@First-oracle-sb-devnet-Standard-DC1ds-v3:~/infra-external/install/cloud/azure$ sudo kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=172.172.195.4 --control-plane-endpoint=172.172.195.4 --ignore-preflight-errors=NumCPU,FileExisting-crictl,FileExisting-conntrack
+I1212 03:39:49.571343    7394 version.go:261] remote version is much newer: v1.32.0; falling back to: stable-1.31
+[init] Using Kubernetes version: v1.31.4
+[preflight] Running pre-flight checks
+	[WARNING NumCPU]: the number of available CPUs 1 is less than the required 2
+	[WARNING Service-Kubelet]: kubelet service is not enabled, please run 'systemctl enable kubelet.service'
+error execution phase preflight: [preflight] Some fatal errors occurred:
+	[ERROR KubeletVersion]: couldn't get kubelet version: cannot execute 'kubelet --version': executable file not found in $PATH
+[preflight] If you know what you are doing, you can make a check non-fatal with `--ignore-preflight-errors=...`
+To see the stack trace of this error execute with --v=5 or higher
+
+
+
+KUBERNETES error 😢
+
+
+azureuser@First-oracle-sb-devnet-Standard-DC1ds-v3:~/infra-external/install/cloud/azure$ sudo tar zxvf crictl-$VERSION-linux-amd64.tar.gz -C /usr/local/bin
+crictl
+azureuser@First-oracle-sb-devnet-Standard-DC1ds-v3:~/infra-external/install/cloud/azure$ rm -f crictl-$VERSION-linux-amd64.tar.gz
+azureuser@First-oracle-sb-devnet-Standard-DC1ds-v3:~/infra-external/install/cloud/azure$ sudo systemctl enable kubelet.service
+Failed to enable unit: Unit file kubelet.service does not exist.
+azureuser@First-oracle-sb-devnet-Standard-DC1ds-v3:~/infra-external/install/cloud/azure$ which kubelet
+azureuser@First-oracle-sb-devnet-Standard-DC1ds-v3:~/infra-external/install/cloud/azure$ sudo apt-get install -y kubelet
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+E: Unable to locate package kubelet
+azureuser@First-oracle-sb-devnet-Standard-DC1ds-v3:~/infra-external/install/cloud/azure$ sudo kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=172.172.195.4 --control-plane-endpoint=172.172.195.4 --ignore-preflight-errors=NumCPU,FileExisting-crictl,FileExisting-conntrack
+
 
