@@ -2,7 +2,7 @@
 
 This is a guide for setting up a linux server to be a Switchboard oracle that generates Sol by providing dApps with random numbers and /or price feed datas.
 
-_Discalimer: This guide could contain errors ror flaws. Use at your own risk!_
+_Disclaimer: This guide could contain errors or flaws. Use at your own risk!_
 
 <br/>
 
