@@ -334,5 +334,206 @@ Well, hey, this ain't too hard is it? Good thing you got ole' Jimbo sharing his 
 <br/>
 
 
+## Step 4) Runnin The Scripts
+
+We're on the final stretch now. Let's go!
+
+Remeber, we're following the [Bare Metal With Kubernetes SGX Guide](https://docs.switchboard.xyz/docs/switchboard/running-switchboard-oracles/installation-setup-via-scripts/bare-metal-with-kubernetes-k3s-sgx-only) and running the scripts located in the `infra-external/install/bare-metal/kubernetes` folder.
+
+
+First up is the docker install script:
+```
+./infra-external/install/bare-metal/kubernetes/00-docker-install.sh
+```
+
+Yes, I know it's a bit confusing that we need to install docker even though we're using the "kubernetes" scripts and not the docker scripts. With this setup we are NOT running the oracle within the docker compose call, BUT we still need some primitive things from the docker development tooling in order to enable containerized application deployments... hopefully that makes sense. 😅
+
+
+Next,let's run the helm install script:
+```
+./infra-external/install/bare-metal/kubernetes/01-helm-install.sh 
+```
+
+_Note: [Helm](https://helm.sh/) is a package manager for Kubernetes. It simplifies the deployment, management, and sharing of Kubernetes applications by providing a way to define, install, and upgrade even the most complex Kubernetes applications._
+
+Should finish by printing, "HELM: succesfully installed"
+
+Next, let's install SGX:
+```
+./infra-external/install/bare-metal/kubernetes/10-sgx-install.sh
+```
+
+The above command installs Intel SGX components and libraries on your system for secure enclave operations.
+
+
+```
+./infra-external/install/bare-metal/kubernetes/11-sgx-mcu-setup.sh 
+```
+
+^ (may need sudo)
+
+
+```
+./infra-external/install/bare-metal/kubernetes/12-sgx-mcu-check.sh
+```
+
+^ prints some junk in a list?
+
+```
+./infra-external/install/bare-metal/kubernetes/13-sgx-check-sa.sh
+```
+
+^ might just give a weird error
+
+
+Then let's start installing and running the actual switchboard oracle stuff
+
+```
+./infra-external/install/bare-metal/kubernetes/40-oracle-ctr-sol.sh
+```
+
+^ (may need sudo)
+
+_Note, running 40 will "drop you in a temporary container that will have all the necessary tools to run the following step"_
+
+So don't be afraid if you type ls and see ONLY the 41 command...
+
+Just run it!
+```
+./41-oracle-create-sol-account.sh devnet
+```
+
+Hmmm... didn't work for me:
+
+root@5acdfdae9499:/app# ./41-oracle-create-sol-account.sh 
+bash: ./41-oracle-create-sol-account.sh: Is a directory
+
+```
+sudo touch devnet_payer.json
+```
+
+may need to install solana cli in the temporary container also (for solana-keygen errors) (script 40)
+```
+sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"
+```
+and manually export it on the PATH of temp container:
+```
+export PATH="/root/.local/share/solana/install/active_release/bin:$PATH"
+```
+
+note the pubkey (Gx61GcPxiUWLqFb2B3VUxhTd8DDdUuwWwFA35W7tgMDg) and seed phrase (so you can cash out later! 🤑)
+
+This wallet is where the sol will build up!
+
+If the airdrop fails, try manually putting this new public address into the sol devnet faucet.
+
+
+
+Once you've noted the account if, let's exit the temporary container and move onto the next step!
+```
+exit
+```
+
+This will drop you down into another temporary container:
+```
+./50-oracle-ctr-sb.sh
+```
+
+Then run 51
+```
+./51-oracle-prepare-request.sh devnet
+```
+
+Do you want to register an oracle? y
+Do you want to register a guardian? n
+
+Note the stuff. eg:
+
+  -> Solana cluster: devnet
+  -> queueKey: EYiAmGSdsQTuCw413V5BzaruWuCCSDgTPtBGvLkXHbe7
+ 
+# ORACLE - account - 69W7RxMqPvXxxdLZAqL7MYEGWVFr1xT7NYHMuiP3L3gH
+# ORACLE - request tx signature - 65GH4ZfWNEPHJhhxQ9thajz9XQLWrrz3dMd7yQPhRaeih2fHriPFcAhfPeh64Eb1uZHCprm4QMvnNgGHaKdWuVT
+PULL_ORACLE=69W7RxMqPvXxxdLZAqL7MYEGWVFr1xT7NYHMuiP3L3gH
+PULL_QUEUE=EYiAmGSdsQTuCw413V5BzaruWuCCSDgTPtBGvLkXHbe7
+# ORACLE - confirming transaction...
+# ORACLE - transaction confirmed.
+
+
+Then run 52
+```
+./52-oracle-check-perms.sh devnet
+```
+
+Did you also register a guardian, in addition to the oracle? n
+
+Should print a bunch of colorful junk.
+
+
+Now let's exit this temporary container and move onto the Kubernetes stuff!
+```
+exit
+```
+
+Notice that when you exit a new easter egg appears!!
+
+!!! IMPORTANT !!!
+The output from last command represents your Oracle/Guardian public keys (and related data).
+It's all public data, so no harm in sharing it. Now you need to proceed with two steps:
+
+1 - Edit infra-external/cfg/00-vars.cfg and add the entire output from above at the end of the file
+
+2 - Copy Submit a request for acceptance of your new Oracle/Guardian data to -> https://forms.gle/2xWwFQ8XPBGu9DRL6
+
+Once you your Oracle/Guardian data will be approved, you can proceed with the last step.
+
+
+Let's do this...
+
+```
+vim infra-external/cfg/00-vars.cfg-var
+```
+
+I just pasted these:
+```
+PULL_ORACLE=69W7RxMqPvXxxdLZAqL7MYEGWVFr1xT7NYHMuiP3L3gH
+PULL_QUEUE=EYiAmGSdsQTuCw413V5BzaruWuCCSDgTPtBGvLkXHbe7
+```
+
+Also, fill out the google form!
+
+
+Ok, then we can proceed with the scripts:
+```
+./infra-external/install/bare-metal/kubernetes/60-k3s-install.sh
+```
+
+
+70's...
+
+
+
+We've got all the pieces together... now let's get it running!
+
+
+```
+./99-k8s-oracle-install.sh devnet
+```
+
+Getting lots of errors about "Kubernetes cluster unreachable"
+
+====
+ 
+WARN[0000] Unable to read /etc/rancher/k3s/k3s.yaml, please start server with --write-kubeconfig-mode or --write-kubeconfig-group to modify kube config permissions 
+error: error loading config file "/etc/rancher/k3s/k3s.yaml": open /etc/rancher/k3s/k3s.yaml: permission denied
+KUBECTL: creating Namespace switchboard-oracle-devnet
+WARN[0000] Unable to read /etc/rancher/k3s/k3s.yaml, please start server with --write-kubeconfig-mode or --write-kubeconfig-group to modify kube config permissions 
+error: error loading config file "/etc/rancher/k3s/k3s.yaml": open /etc/rancher/k3s/k3s.yaml: permission denied
+azureuser@second-try-oracle-devnet-sb-DCdsv3-k8s:~/infra-external/install/bare-metal/kubernetes$ sudo !!
+sudo ./99-k8s-oracle-install.sh devnet
+====
+ 
+HELM: Installing Switchboard Oracle under namespace switchboard-oracle-devnet
+Error: Kubernetes cluster unreachable: Get "http://localhost:8080/version": dial tcp 127.0.0.1:8080: connect: connection refused
 
 
