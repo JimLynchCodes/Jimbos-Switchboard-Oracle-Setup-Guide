@@ -247,3 +247,23 @@ E: Unable to locate package kubelet
 azureuser@First-oracle-sb-devnet-Standard-DC1ds-v3:~/infra-external/install/cloud/azure$ sudo kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=172.172.195.4 --control-plane-endpoint=172.172.195.4 --ignore-preflight-errors=NumCPU,FileExisting-crictl,FileExisting-conntrack
 
 
+## Run Through number 2!
+
+It's a new day, and I'm trying this again fresh from scratch!
+
+The game plan: 
+
+- Choose the cheapest DCdsv3 (x86 SGX) server on azure with 2 CPUs.
+
+- ssh in and clone the switchboard infra-external repo.
+
+- Update IP address in the configs.
+
+- Proceed with the steps in `/install/bare-metal/kubernetes`
+
+
+
+
+
+
+
