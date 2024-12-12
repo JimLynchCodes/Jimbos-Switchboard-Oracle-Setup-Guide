@@ -41,6 +41,40 @@ Starting and running a fleet of oracle servers correctly should produce profit a
 Being forced to run on SEV-enabled AMD is pretty limiting, and there are only a few recommended in the Switchboard docs.
 
 
+https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/general-purpose/dcdsv3-series?tabs=sizebasic
+
+The DCdsv3 server we need with the specs with	1core	8gb memory,	4GiB EPC Memory is called "Standard_DC1ds_v3".
+
+Image: Ubuntu Server 22.04 LTS - x64 Gen2
+
+Select radio button for "x64".
+
+Size: Standard_DC1ds_v3 - 1 vcpu, 8 GiB memory ($82.49/month) ~ 12/11/24
+
+Ports: Select all three- HTTP (80), HTTPS (443), SSH (22)
+
+Then click review, create, and download the .pem keypair file.
+
+Go to the page for your new resource and locate the "Public IP address"
+
+Now, let's go to the terminal...
+
+---
+
+<br/>
+
+1) ssh into the new server 
+
+```bash
+ssh -i /Users/jim/Documents/First-oracle-sb-devnet-Standard-DC1ds-v3_key.pem azureuser@server_ip_address
+```
+
+might have to give permissions for keyfile:
+```
+chmod 600 /Users/jim/Documents/First-oracle-sb-devnet-Standard-DC1ds-v3_key.pem
+```
+
+
 TLDR; I recommend going with DCadsv5 on Azure with 2 vCPUs and 8 GB of RAM for aroudn $75/month. 
 
 - video on amd hypervision SEV Protection: https://www.youtube.com/watch?v=yr56SaJ_0QI
@@ -80,7 +114,16 @@ After provisioning server
 
 # Server Setup
 
-Get this server on Azure: DCasv5
+Get this server on Azure: (AMD SEV) DCasv5 vs (SGX) DCdsv3
+
+
+In Azure.
+
+Click "Create Resource"
+
+Choose "Ubuntu 22", "Create"
+
+
 
 
 Then ssh in with:
