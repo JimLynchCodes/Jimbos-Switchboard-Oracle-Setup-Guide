@@ -78,6 +78,18 @@ After provisioning server
 
 <br/>
 
+# Server Setup
+
+Get this server on Azure: DCasv5
+
+
+Then ssh in with:
+```bash
+ssh 
+```
+
+## Firewall Setup
+
 1. Enable UFW:
 
 ```Bash
