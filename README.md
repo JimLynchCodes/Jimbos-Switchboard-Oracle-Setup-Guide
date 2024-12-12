@@ -76,6 +76,31 @@ GOOGLE CLOUD MACHINE TYPE COMPARISON
 After provisioning server
 
 
+<br/>
+
+1. Enable UFW:
+
+```Bash
+sudo ufw enable
+```
+2. Allow Incoming Traffic on Ports 80 and 443:
+
+```Bash
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+```
+
+3. Allow All Outgoing Traffic:
+
+```Bash
+sudo ufw default allow outgoing
+```
+
+4. Verify the Firewall Rules:
+```Bash
+sudo ufw status
+```
+
 
 
 
