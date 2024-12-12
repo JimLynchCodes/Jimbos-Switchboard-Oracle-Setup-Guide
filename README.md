@@ -262,7 +262,76 @@ The game plan:
 - Proceed with the steps in `/install/bare-metal/kubernetes`
 
 
+## 1) Provision the server
 
+Let's begin in the [azure portal](https://portal.azure.com/#home).
+
+1) Click "Create a resource +"
+
+2) Choose Ubuntu Server 22.04 LTS
+
+Top info: selections
+
+Instance details
+
+Virtual machine name - second-try-oracle-devnet-sb-DCdsv3-k8s
+Region - (US) East US
+Availability options - No infrastructure redundancy required
+Security type - Standard
+Image - Ubuntu Server 22.04 LTS - x64 Gen2
+VM architecture - x64
+
+Size -> click "See all sizes"
+     -> expand DC Series
+     -> choose DC2ds_v3 (2CPU, 16gb, ~$180/month)
+     
+Administrator Account section
+
+- use SSH public key
+- Keep username as azureuser (or change it if you feel like it)
+- generate a new key or use one if you already have it
+
+Inbound Ports
+- expand the dropdown and select all three 80, 442, and 22
+
+
+Click create.
+
+Step 1 Complete!
+
+<br/>
+
+## 2 Diggin Into It
+
+ssh into the server
+```
+ssh azureuser@IP_ADDRESS
+```
+
+_Using the https link(!),_ clone the infra-external repo.
+```
+git clone https://github.com/switchboard-xyz/infra-external.git
+```
+
+<br/>
+
+## Step 3) Editing The Config
+
+
+Edit the common vars config file:
+```
+vim 
+```
+
+Update __EMAIL__ to yours.
+
+Update __IP4__ to the server public ip address
+
+That's it!
+
+Well, hey, this ain't too hard is it? Good thing you got ole' Jimbo sharing his wisdom out here. :)
+
+<br/>
 
 
 
