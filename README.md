@@ -176,6 +176,12 @@ sudo ufw default allow outgoing
 sudo ufw status
 ```
 
+Add your email and IPV4 ip address to the config:
+```
+vim cfg/00-common-vars.cfg
+```
+
+Then start running the scripts in `install/cloud/azure`.
 
 
 
