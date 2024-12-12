@@ -63,16 +63,36 @@ Now, let's go to the terminal...
 
 <br/>
 
-1) ssh into the new server 
-
-```bash
-ssh -i /Users/jim/Documents/First-oracle-sb-devnet-Standard-DC1ds-v3_key.pem azureuser@server_ip_address
-```
+1) ssh in
 
 might have to give permissions for keyfile:
 ```
 chmod 600 /Users/jim/Documents/First-oracle-sb-devnet-Standard-DC1ds-v3_key.pem
 ```
+
+Add key to keychain: 
+```bash
+ssh-agent bash
+sudo ssh-add ~/.ssh/azure_key/First-oracle-sb-devnet-Standard-DC1ds-v3_key.pem
+```
+
+ssh into the new server 
+
+```bash
+ssh azureuser@server_ip_address
+```
+
+2) Get code
+
+git should be already installed. 👍
+
+___Make sure to use the https clone link!!___
+
+```bash
+git clone https://github.com/switchboard-xyz/infra-external.git
+```
+
+
 
 
 TLDR; I recommend going with DCadsv5 on Azure with 2 vCPUs and 8 GB of RAM for aroudn $75/month. 
