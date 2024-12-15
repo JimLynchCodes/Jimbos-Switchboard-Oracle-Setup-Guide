@@ -647,4 +647,102 @@ requireAuthorityHeartbeatPermission 1
 requireAuthorityVerifyPermission    0
 requireUsagePermissions             0
 mint                                N/A
- 
+
+ ---
+
+ <br/>
+
+## DJ Khalid- Anoha One
+
+### Fourty Morty
+
+Ok, we're back, and I learned a few things from Lele responding to my q's in the discord channel. 👍
+
+This time, let's use the scripts in `cloud/azure` and 
+
+
+
+Project details
+Select the subscription to manage deployed resources and costs. Use resource groups like folders to organize and manage all your resources.
+Subscription
+Azure subscription 1
+Resource group
+(New) fourty-morty_group
+Create new
+Instance details
+Virtual machine name
+fourty-morty
+Region
+(US) East US
+Availability options
+No infrastructure redundancy required
+
+
+
+
+Security type
+Trusted launch virtual machines
+
+
+
+Configure security features
+Image
+
+Ubuntu Server 22.04 LTS - x64 Gen2
+See all images | Configure VM generation
+VM architecture
+Arm64
+x x64
+Run with Azure Spot discount
+You are in the free trial period. Costs associated with this VM can be covered by any remaining credits on your subscription.Learn more
+Size
+Standard_DC2ds_v3 - 2 vcpus, 16 GiB memory ($164.98/month)
+See all sizes
+Enable Hibernation
+Hibernate does not currently support Trusted launch and Confidential virtual machines for Linux images.Learn more
+Administrator account
+Authentication type
+SSH public key
+Password
+Azure now automatically generates an SSH key pair for you and allows you to store it for future use. It is a fast, simple, and secure way to connect to your virtual machine.
+Username
+azureuser
+x SSH public key source
+Use existing public key
+Ed25519 and RSA SSH formats are supported for the selected VM image. Ed25519 provides a fixed security level of no more than 128 bits for 256-bit key, while RSA could offer better security with keys longer than 3072 bits.
+
+
+Public inbound ports
+None
+x Allow selected ports
+Select inbound ports
+HTTP (80), HTTPS (443), SSH (22)
+All traffic from the internet will be blocked by default. You will be able to change inbound port rules in the VM > Networking page.
+
+
+ssh in:
+```
+ssh azureuser@<your ip>
+```
+
+go to home folder:
+```
+cd /home
+```
+
+clone the repo:
+```
+git cone git@github.com:switchboard-xyz/infra-external.git
+```
+
+edit the config (may need sudo):
+```
+vim infra-external/cfg/00-common-vars.cfg
+```
+
+update EMAIL and IP4.
+
+Then exit
+
+
+
