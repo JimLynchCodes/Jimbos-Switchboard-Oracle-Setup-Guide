@@ -742,7 +742,22 @@ vim infra-external/cfg/00-common-vars.cfg
 
 update EMAIL and IP4.
 
-Then exit
+Then exit.
 
 
+
+
+Run helm install:
+```
+./01-helm-install.sh
+```
+
+```
+./40-oracle-ctr-sol.sh
+```
+
+If above gives you docker error, run docker install command from the bare-metal folders:
+```
+./install/bare-metal/kubernetes/00-docker-install.sh
+```
 
