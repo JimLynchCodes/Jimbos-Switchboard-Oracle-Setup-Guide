@@ -761,3 +761,114 @@ If above gives you docker error, run docker install command from the bare-metal 
 ./install/bare-metal/kubernetes/00-docker-install.sh
 ```
 
+
+<br/>
+<br/>
+
+## Try Five: Five D
+
+<br/>
+
+1) Made a new server on azure (Ubuntu Server 22.04 LTS, Standard_DC2ds_v3 - 2 vcpus, 16 GiB memory ($164.98/month)
+
+2) ssh into it
+
+3) 
+<br/>
+
+
+51 output:
+
+===================================================
+=                !!! IMPORTANT !!!                =
+=         COPY/SAVE THE OUTPUT FROM HERE          =
+===================================================
+ 
+Creating new Oracle/Guardian permission request on Solana for:
+  -> Solana cluster: devnet
+  -> queueKey: EYiAmGSdsQTuCw413V5BzaruWuCCSDgTPtBGvLkXHbe7
+ 
+# ORACLE - account - Fzy7CfkXcitAMSoW3gq3TcAx27GAZuibYeMXrgXv2nM5
+# ORACLE - request tx signature - 565CHE736Cnnx6mN8PKceA81kax1W3TqfTqsArGGBw8P7ZVtTmiHBKL3TWvCQs1nFZMzbfzfZd7PSZYXwjbSVjsP
+PULL_ORACLE=Fzy7CfkXcitAMSoW3gq3TcAx27GAZuibYeMXrgXv2nM5
+PULL_QUEUE=EYiAmGSdsQTuCw413V5BzaruWuCCSDgTPtBGvLkXHbe7
+# ORACLE - confirming transaction...
+# ORACLE - transaction confirmed.
+ 
+===================================================
+=                !!! IMPORTANT !!!                =
+=  COPY/SAVE THE OUTPUT ABOVE, BEFORE PROCEEDING  =
+=  THEN TYPE 'exit' TO LEAVE THIS TMP CONTAINER.  =
+===================================================
+ 
+
+
+
+52 Output:
+
+Did you also register a guardian, in addition to the oracle? (y/n) n
+===================================================
+=       CHECKING THAT YOUR ORACLE IS WORKING      =
+===================================================
+ 
+Oracle being checked:
+  -> Solana cluster: devnet
+  -> queueKey: EYiAmGSdsQTuCw413V5BzaruWuCCSDgTPtBGvLkXHbe7
+ 
+(node:61) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+## Queue                            EYiAmGSdsQTuCw413V5BzaruWuCCSDgTPtBGvLkXHbe7
+authority                           2KgowxogBrGqRcgXQEmqFvC3PGtCu66qERNJevYW8Ajh
+mrEnclavesLen                       1
+mrEnclaves                          
+    mrEnclave-0                     7a7bab2c90c3071215a2c0937e2807f3ee0cd81cc34d9adbb6979b29393cc5b2
+oracleKeysLen                       17
+oracleKeys                          
+    oracleKey-0                     84RXhHV3b9tRpsXh2MZTn28USJsAhXHvZpZ1q9JsbfT8
+        gateway                     https://az-neu-01-1.switchboard-oracles.xyz/devnet
+    oracleKey-1                     3Zzkn14g5tv7ekEuevSbpy3LVe2uny9wGznvGCMxfgSh
+        gateway                     https://az-neu-01-0.switchboard-oracles.xyz/devnet
+    oracleKey-2                     6S5V5WJVtGp6AgFm3fYHyEvQ45TS4Fy8UN5V2Q7wvUAY
+        gateway                     https://az-neu-01-3.switchboard-oracles.xyz/devnet
+    oracleKey-3                     Ahy8e91sPy3MM39ia4RbLYUhfTXkcRH7MfmvoWbA8ezZ
+        gateway                     https://az-neu-01-4.switchboard-oracles.xyz/devnet
+    oracleKey-4                     6LkpJH6hZGNpuBVJcpjcAbgdQkYcfb1UFwK6FxeCGyV
+        gateway                     https://az-neu-01-6.switchboard-oracles.xyz/devnet
+    oracleKey-5                     Q4ATwgwZr1nqbsTYP5g6sVbcHgn666EdXhk1GhL7CDs
+        gateway                     https://az-neu-01-5.switchboard-oracles.xyz/devnet
+    oracleKey-6                     3WdPQFqJiUyAtTKZdtrE5sUn1FUBG544DGmVatRkR7yD
+        gateway                     https://65.20.113.49.xip.switchboard-oracles.xyz/devnet
+    oracleKey-7                     7W4m2ssaDs4cYH6WThvjNsygqVJdxDCdxsHmRabJ6MaZ
+        gateway                     https://vu-man-01.switchboard-oracles.xyz/devnet
+    oracleKey-8                     3HdF8xK42ZKv5d7nJGfZUYwdyDz9akw3n47RReq5X3ux
+        gateway                     https://57.129.38.6.xip.switchboard-oracles.xyz/devnet
+    oracleKey-9                     7Eg6PFHteYGPr4PwpcDVibFtAihuzyB5BgqYK4DB8u3Q
+        gateway                     https://vu-ams-02.switchboard-oracles.xyz/devnet
+    oracleKey-10                    9K981VjRtKBKvZqvHLzcbEtjExVnR3KmuYr9dnbbpio5
+        gateway                     https://65.20.113.49.xip.switchboard-oracles.xyz/devnet
+    oracleKey-11                    AmFiYQBMU1J3ctgC1LuQhcPRsyHZndWmhU86weoS5KQZ
+        gateway                     https://212.126.35.132.xip.switchboard-oracles.xyz/devnet
+    oracleKey-12                    DqCgWiVHNiDc2f6gcHZCwNGbbbiTKukWHPwdrJFt5tjr
+        gateway                     https://198.244.230.159.xip.switchboard-oracles.xyz/devnet
+    oracleKey-13                    GWheNiCceL7WvRVnXAF6ZHrk8LteQouBUMLY85JN51g4
+        gateway                     https://az-neu-01-2.switchboard-oracles.xyz/devnet
+    oracleKey-14                    3soPe1b9mNFmweoXSsBnU1NBKpFJSwYn8L7HTWWiAb88
+        gateway                     https://34.147.45.125.xip.switchboard-oracles.xyz/devnet
+    oracleKey-15                    DT5d4F1idF6qRQjHa4fXkU5Dsd2qaL95v3ZUEzFfkWZU
+        gateway                     https://34.91.12.152.xip.switchboard-oracles.xyz/devnet
+    oracleKey-16                    9reg9rafod2moQfAE7VAvypK1UZvoqmy1Qm8kq3E6yJu
+        gateway                     https://57.129.18.101.xip.switchboard-oracles.xyz/devnet
+maxQuoteVerificationAge             604800
+lastHeartbeat                       2024-12-17T03:10:11.000Z
+nodeTimeout                         300
+oracleMinStake                      0
+allowAuthorityOverrideAfter         600
+reward                              1000000
+currIdx                             9
+gcIdx                               0
+requireAuthorityHeartbeatPermission 1
+requireAuthorityVerifyPermission    0
+requireUsagePermissions             0
+mint                                N/A
+ 
+
